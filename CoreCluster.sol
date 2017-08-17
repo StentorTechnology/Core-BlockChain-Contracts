@@ -11,15 +11,17 @@ contract CoreClusterRegistrar{
 
 contract CoreCluster{
     address owner; //address of cluster creator
-    CoreClusterRegistrar constant internal registrar = CoreClusterRegistrar(0x145b3c46293c4d3c6d33f1fc420f2ac8bc9f561f);
+    CoreClusterRegistrar constant internal registrar = CoreClusterRegistrar(0xf683b6c648d0999b7725330adb4d4e5ea3d48499);
+    string name;
     
     /*
     creates a default cluster with its balance available to all accounts within 
     the cluster and registars the given name with this cluster in the registrar
     */
-    function CoreCluster(string name){
-        bool success = registrar.register(this, name);
+    function CoreCluster(string _name){
+        bool success = registrar.register(this, _name);
         require(success == true);
+        name = _name;
         owner = msg.sender;
     }
     
@@ -29,11 +31,15 @@ contract CoreCluster{
     cluster must have already been created. This function requires the caller
     to be the original creater of the cluster.
     */
-    function updateAddress(string name, address newAddress){
+    function updateAddress(address newAddress){
         require(msg.sender == owner);
         address check = registrar.updateAddress(name, newAddress);
         require(check == newAddress);
         selfdestruct(newAddress);
+    }
+    
+    function getName() constant returns(string){
+        return name;
     }
     
     /*
