@@ -49,3 +49,10 @@ contract CoreCluster{
     */
     function() payable{}
 }
+/*
+fake test clusters on test node
+test_cluster_1: 0x9b3b1e98d5ea56220a6b490724c88bbe33dfea03
+test_cluster_2: 0xd1512eaf666286e3cae6ba83232e88753ddda870
+test_cluster_3: 0x48d83635dd766ce650c551bbd7cd7b105b925631
+test_cluster_4: 0x6afdb2c4fe7b49e35b0f376f76264baf734029c3
+*/
