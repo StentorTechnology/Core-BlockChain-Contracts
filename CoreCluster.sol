@@ -1,8 +1,6 @@
 /*
-Currently allows anyone to withdraw balance from this cluster. In the future, this must be changed to
-only accounts within the cluster.
+By default, only the creator of the cluster can withdraw balance from the cluster
 */
-
 pragma solidity ^0.4.13;
 
 /*
@@ -53,6 +51,7 @@ contract CoreCluster{
     modifier on any of the functions written in the cluster.
     */
     function withdraw(uint amount) payable returns(bool){
+        requires(msg.sender == owner);
         if(amount > this.balance){
             return false;
         }
