@@ -2,6 +2,7 @@ pragma solidity ^0.4.13;
 
 contract CoreClusterRegistrar {
     
+    //cluster name -> cluster address
     mapping(string => address) clusters;
 
     function register(address newCluster, string name) returns (bool){
