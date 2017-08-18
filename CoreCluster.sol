@@ -1,3 +1,8 @@
+/*
+Currently allows anyone to withdraw balance from this cluster. In the future, this must be changed to
+only accounts within the cluster.
+*/
+
 pragma solidity ^0.4.13;
 
 /*
@@ -47,7 +52,13 @@ contract CoreCluster{
     to ever have a balance, delete this function and do NOT put the 'payable'
     modifier on any of the functions written in the cluster.
     */
-    function() payable{}
+    function withdraw(uint amount) payable returns(bool){
+        if(amount > this.balance){
+            return false;
+        }
+        msg.sender.transfer(amount);
+        return true;
+    }
 }
 /*
 fake test clusters on test node
