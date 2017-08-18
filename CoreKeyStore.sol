@@ -8,8 +8,7 @@ contract CoreKeyStores {
         internal
         returns (bool)
     {
-        if(bytes(keys[cluster][account]).length != 0) return true;
-        return false;
+        return bytes(keys[cluster][account]).length != 0
     }
 
     function storeKey (
